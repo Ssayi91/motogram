@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', Georgia, Times New Roman, Times, serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for theme change */
+}
+:root{
+    --main-color:darkred;
+    --text-color:rgb(0, 0, 0);
+    --bg-color: white;
+    --color:#1f5b8f;
+    --fg-color:#315a79;
+    --txt-color:#9fb7ca;
+    --tag-color:#ba4989;
+    --tg-color:#db6551;
+    --tg1-color:#e69a54;
+    --tg2-color:#c23e5d;
+    --tg3-color:#e8094b;
+    --tg4-color:#dd2a7d;
+}
+
+.dark-mode {
+    background-color: #333; /* Dark background */
+    color: white; /* Light text */
+}
+
+
+.login-container {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: background-color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode .login-container {
+    background: #444; /* Darker background for the container */
+}
+
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    transition: color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode h2 {
+    color: white; /* Light text for dark mode */
+}
+
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-weight: 600;
+    transition: color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode label {
+    color: white; /* Light text for dark mode */
+}
+
+
+input[type="text"],
+input[type="password"] {
+    width: 92%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    transition: border-color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="password"] {
+    border-color: #666; /* Darker border for dark mode */
+}
+
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--color);
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode button {
+    background-color: var(--tg-color); /* Darker button for dark mode */
+}
+
+
+button:hover {
+    background-color: var(--tg-color);
+}
+
+.dark-mode button:hover {
+    background-color: var(--color); /* Darker hover effect for dark mode */
+}
+
+
+#message {
+    text-align: center;
+    margin-top: 10px;
+    transition: color 0.3s; /* Smooth transition for theme change */
+}
+
+.dark-mode #message {
+    color: white; /* Light text for messages in dark mode */
+}

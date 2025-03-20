@@ -1,0 +1,890 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Color Variables */
+:root {
+    --bg-color: #ffff;
+    --color: #1f5b8f;
+    --fg-color: #315a79;
+    --txt-color: #9fb7ca;
+    --tag-color: #ba4989;
+    --tg-color: #db6551;
+    --tg1-color: #e69a54;
+    --tg2-color: #c23e5d;
+    --tg3-color: #e8094b;
+    --tg4-color: #dd2a7d;
+}
+
+/* Basic Reset */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Montserrat';
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--color);
+}
+
+/* Header Styles */
+header{
+    background: #1f5b8f;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    font-size: 1.6em;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Navigation Styles */
+nav {
+    flex-grow: 1;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: end;
+}
+
+.nav-links li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.nav-links a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size:15px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--tg-color);
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--color);
+    cursor: pointer;
+}
+
+
+/* Hero Banner Styles */
+.hero-banner {
+    position: relative;
+    background: url('Assets/variety.jpg') no-repeat center center/cover;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    z-index: 3;
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+.hero-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Added overlay for fade effect */
+    z-index: 2; /* Place it below the text */
+}
+
+.hero-banner h2,
+.hero-banner p,
+.cta-button {
+    position: relative; /* Ensure these elements are above the overlay */
+    z-index: 3; /* Ensure text and button are above the overlay */
+}
+
+.hero-banner h2 {
+    font-size: 3em;
+    margin: 0;
+}
+
+.hero-banner h2 span {
+    color: #db6551;
+}
+
+.hero-banner p {
+    font-size: 1.5em;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.hero-banner p span{
+    color: var(--color);
+    font-weight: 700;
+
+}
+
+.cta-button {
+    background-color: var(--tg-color);
+    color: var(--bg-color);
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.cta-button:hover {
+    background-color: var(--bg-color);
+    color: var(--color);
+    border: 1px solid var(--color);
+    
+}
+
+
+/* In-House Stock Section */
+.in-house-stock {
+    text-align: center;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.in-house-stock h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #1f5b8f;
+}
+
+.in-house-stock h2 i {
+    color: #db6551;
+    margin-right: 10px;
+}
+
+/* Car List Styles */
+.car-list {
+    display: flex;
+    grid-gap: 10px;
+}
+.car-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive rows */
+    gap: 10px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.car-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Image on top, details below */
+    align-items: center;
+    max-width: 350px; /* Adjust card width */
+    width: 100%;
+    
+}
+
+/* IMAGE CONTAINER */
+.car-image-container {
+    width: 100%; /* Full width */
+    height: 220px; /* Increased height for bigger image */
+    overflow: hidden;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.car-image {
+    width: 90%;
+    height: 90%;
+    object-fit: cover; /* Ensures the image fills nicely */
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+/* CAR DETAILS */
+.car-details {
+    padding: 15px;
+    text-align: left; /* Align text to the left */
+    width: 100%;
+    border-top: 2px solid var(--color); /* Add a border at the top */
+    
+}
+
+.car-details h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color);
+    margin-bottom: 5px;
+}
+
+.car-details p {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.8em;
+}
+
+/* SHOW MORE BUTTON */
+.show-more-btn {
+    background: none;
+    border: none;
+    color: var(--tg-color);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.show-more-btn:hover {
+    background-color: var(--bg-color);
+    color: var(--color);
+    border: 1px solid var(--color);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+}
+
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+    margin-top: 40px;
+}
+
+#close-modal, #prev-modal, #next-modal {
+    position: absolute;
+    color: var(--tg-color);
+    font-size: 30px;
+    cursor: pointer;
+}
+
+#close-modal { top: 20px; right: 30px; }
+#prev-modal { left: 10px; top: 50%; transform: translateY(-50%); }
+#next-modal { right: 10px; top: 50%; transform: translateY(-50%); }
+
+/* stats section */
+.stats-section {
+    background: linear-gradient(135deg, #111, #222);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Stats Container */
+.stats-section {
+    background: #ffffff; /* Clean white background */
+    padding: 60px 20px;
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* Stats Container */
+.stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Stat Card */
+.stat-card {
+    background: #f9f9f9;
+    border-radius: 15px;
+    padding: 30px 20px;
+    width: 250px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Icon Styling */
+.stat-card i {
+    font-size: 40px;
+    color: var(--color);
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+/* Numbers & Text */
+.stat-card h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--tg-color);
+    margin-bottom: 5px;
+}
+
+.stat-card p {
+    font-size: 16px;
+    color: var(--color);
+}
+
+/* Hover Effects */
+.stat-card:hover {
+    transform: translateY(-5px);
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card:hover i {
+    color: var(--color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--color);
+    transform: scale(1.1);
+}
+
+/* Promotions Section */
+.promotions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: url('Assets/motogram\ stock.png') no-repeat center center/cover;
+    position: relative;
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Overlay for better readability */
+.promotions::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.349); /* Dark overlay */
+}
+
+/* Promotion Banner */
+.promo-banner {
+    position: relative;
+    text-align: center;
+    color: var(--tg-color);
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.178); /* Glass effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+}
+
+/* Title Styling */
+.promo-banner h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.promo-banner i {
+    color: var(--color); /* Gold icon */
+    margin-right: 8px;
+}
+
+/* Text Styling */
+.promo-banner p {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--bg-color);
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+.promo-button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    color:var(--bg-color);
+    padding: 12px 24px;
+    border-radius: 50px;
+    background: var(--tg-color);
+    transition: 0.3s ease-in-out;
+}
+
+/* Button Hover */
+.promo-button:hover {
+    transform: scale(1.1);
+}
+
+/* Icon Animation */
+.promo-button i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.promo-button:hover i {
+    transform: translateX(5px);
+}
+
+
+/* signup  */
+.signup-section {
+    background: white;
+    text-align: center;
+    padding: 60px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle Decorative Dots */
+.signup-section::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.signup-section::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: rgba(70, 130, 180, 0.2);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Signup Content */
+.signup-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Headings */
+.signup-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--tg-color);
+    margin-bottom: 10px;
+}
+
+.signup-section h2 i {
+    color: var(--color);
+}
+
+/* Description */
+.signup-section p {
+    font-size: 16px;
+    color: var(--color);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* Signup Form */
+.signup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Email Input */
+.signup-form input {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid var(--color);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.signup-form input:focus {
+    border-color: var(--color);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Subscribe Button */
+.signup-form button {
+    background: var(--tg-color);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.signup-form button i {
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.signup-form button:hover {
+    background: var(--bg-color);
+    color: var(--color);
+}
+
+/* Privacy Note */
+.privacy-note {
+    font-size: 16px;
+    color: var(--tg-color);
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.privacy-note i {
+    color: var(--color);
+}
+
+
+/* Contact Section */
+
+.contact-section {
+    background: url('Assets/contact\ 2.jpg') no-repeat center center/cover;
+    padding: 20px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Dark Overlay */
+.contact-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.432);
+    z-index: 1;
+}
+
+/* Contact Wrapper */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Contact Info & Actions */
+.contact-info, .contact-actions {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background: rgba(14, 13, 13, 0.521);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    margin: 10px 10px;
+}
+
+/* Hover Effect */
+.contact-info:hover, .contact-actions:hover {
+    transform: translateY(-5px);
+}
+
+/* Headings */
+.contact-section h2, .contact-section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--tg-color);
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Contact Icons */
+.contact-info i, .contact-actions i {
+    color: var(--color);
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* Links */
+.contact-section a {
+    color: var(--tg-color);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.whatsapp-btn, .email-btn {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-btn i, .email-btn i {
+    margin-right: 8px;
+}
+
+/* Button Hover Effects */
+.whatsapp-btn:hover {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+}
+
+.email-btn:hover {
+    background: #FF5733;
+    color: white;
+    border-color: #FF5733;
+}
+
+ 
+
+/* Footer Styling */
+.footer {
+    background:var(--color);
+    padding: 50px 50px;
+    position: relative;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.384);
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Footer Sections */
+.footer-about,
+.footer-links,
+.footer-contact,
+.footer-social {
+    flex: 1;
+    min-width: 220px;
+    margin: 10px;
+}
+.footer-about h2{
+    color: var(--tg-color);
+}
+/* Logo */
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color);
+    display: flex;
+    align-items: center;
+}
+.footer-about p{
+    color: var(--bg-color);
+}
+.footer-logo i {
+    margin-right: 10px;
+}
+
+/* Footer Links */
+.footer-links h3,
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--tg-color);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: var(--bg-color);
+    font-size: 16px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links ul li a i {
+    margin-right: 8px;
+    
+}
+
+.footer-links ul li a:hover {
+    color:var(--tg-color);
+}
+
+/* Contact Info */
+.footer-contact p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+    color:var(--color);
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--bg-color);
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--tg-color);
+    transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+}
+.footer-bottom p{
+    font-size: 16px;
+    color: var(--bg-color);
+    font-weight: 600;
+
+}
+.footer-bottom p span{
+    color: var(--tg-color);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Header and Navigation */
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background: #1f5b8f;
+        padding: 20px 0;
+        text-align: center;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    /* Car Cards */
+    .car-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .car-card {
+        width: 90%;
+    }
+
+    /* Promotions */
+    .promotions h2 {
+        font-size: 1.5em;
+    }
+
+    .promotions p {
+        font-size: 1em;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-about,
+    .footer-links,
+    .footer-social {
+        margin: 20px 0;
+    }
+}

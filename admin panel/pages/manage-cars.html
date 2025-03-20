@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Cars - Admin</title>
+    <link rel="stylesheet" href="../pages/manage-cars.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+      
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2><i class="fa-solid fa-user-shield"></i> Admin Panel</h2>
+            <ul>
+                <li><a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="manage-cars.html" class="active"><i class="fa-solid fa-car"></i> Manage Cars</a></li>
+                <li><a href="manage-blogs.html"><i class="fa-solid fa-newspaper"></i> Manage Blogs</a></li>
+                <li><a href="manage-fraud.html"><i class="fa-solid fa-triangle-exclamation"></i> Fraud Reports</a></li>
+                <li><a href="manage-users.html"><i class="fa-solid fa-users"></i> Manage Users</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard">
+            <header>
+                <h1>Manage Cars</h1>
+                <div class="header-actions">
+                    <button id="dark-mode-toggle"><i class="fa-solid fa-moon"></i></button>
+                    <button id="logout-button"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
+                </div>
+            </header>
+
+            <!-- Car Upload Form -->
+            <section class="car-upload" style="margin-bottom: 20px;">
+                <h2><i class="fa-solid fa-plus"></i> Add a New Car</h2>
+                <form id="car-form" action="/api/cars/add" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" id="car-id" name="carId">
+                    <div class="input-group">
+                        <i class="fa-solid fa-car"></i>
+                        <input type="text" id="brand" name="brand" placeholder="Brand" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-car-side"></i>
+                        <input type="text" id="model" name="model" placeholder="Model" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-calendar"></i>
+                        <input type="number" id="year" name="year" placeholder="Year" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-dollar-sign"></i>
+                        <input type="number" id="price" name="price" placeholder="Price" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-gas-pump"></i>
+                        <select id="fuelType" name="fuelType" required>
+                            <option value="" disabled selected>Select Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-cogs"></i>
+                        <select id="transmission" name="transmission" required>
+                            <option value="" disabled selected>Select Transmission</option>
+                            <option value="Manual">Manual</option>
+                            <option value="Automatic">Automatic</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-tachometer-alt"></i>
+                        <input type="text" id="engineCapacity" name="engineCapacity" placeholder="Engine Capacity (e.g. 2000cc)" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-road"></i>
+                        <input type="number" id="mileage" name="mileage" placeholder="Mileage (KM)" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-info-circle"></i>
+                        <textarea id="description" name="description" placeholder="Description" required></textarea>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-list"></i>
+                        <select id="category" name="category" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="normal">Normal</option>
+                            <option value="imported">Imported</option>
+                        </select>
+                    </div>
+                    <div class="input-group" id="registration-group" style="display: block;">
+                        <i class="fa-solid fa-id-card"></i>
+                        <input type="text" id="registration" name="registration" placeholder="Registration (e.g. KAB 123X)" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fa-solid fa-tags"></i>
+                        <select id="status" name="status">
+                            <option value="pending">Pending</option>
+                            <option value="approved">Approved</option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="source" name="source" value="public">
+                    <div class="input-group">
+                        <i class="fa-solid fa-image"></i>
+                        <input type="file" id="images" name="images" multiple required>
+                    </div>
+                    <button type="submit"><i class="fa-solid fa-upload"></i> Add Car</button>
+                    <p id="message"></p>
+                </form>
+            </section>
+
+            <!-- Search & Filters -->
+            <div class="filter-container">
+                <div class="input-group">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="search" placeholder="Search Cars...">
+                </div>
+                <div class="input-group">
+                    <i class="fa-solid fa-filter"></i>
+                    <select id="filter-status">
+                        <option value="">All Status</option>
+                        <option value="available">Available</option>
+                        <option value="sold">Sold</option>
+                    </select>
+                </div>
+                <button id="apply-filters"><i class="fa-solid fa-check"></i> Apply Filters</button>
+            </div>
+
+            <!-- Car List Table -->
+            <section class="car-list" id="car-list">
+                <!-- Dynamically populated car details will go here -->
+            </section>
+
+
+            <!-- Car Image Modal -->
+<div id="car-modal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modal-image">
+    
+    <!-- Navigation Arrows -->
+    <button id="prev-arrow" onclick="prevImage()">&#10094;</button>
+    <button id="next-arrow" onclick="nextImage()">&#10095;</button>
+</div>
+
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button id="prev-page">« Prev</button>
+                <span id="page-number">1</span>
+                <button id="next-page">Next »</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="scripts/manage-cars.js"></script>
+</body>
+</html>

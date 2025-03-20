@@ -1,0 +1,901 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Color Variables */
+:root {
+    --bg-color: #ffff;
+    --primary-color: #1f5b8f;
+    --secondary-color: #315a79;
+    --text-light: #9fb7ca;
+    --highlight: #e69a54;
+    --cta-color: #db6551;
+    --cta-hover: #c23e5d;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* Header Styles */
+header {
+    background: var(--primary-color);
+    color: var(--bg-color);
+    padding: 15px 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+/* Navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    padding: 10px 0;
+  
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+nav ul li a:hover {
+    color: var(--cta-color);
+}
+
+/* Hero Section */
+.hero {
+    background: url('Assets/imported-car.jpg') no-repeat center center/cover;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.596);
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 500px;
+    
+}
+
+.hero h2 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: var(--cta-color);
+}
+
+.hero p {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--bg-color);
+    text-shadow: rgba(0, 0, 0, 0.596);
+}
+
+.cta-btn {
+    background: var(--cta-color);
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.363);
+}
+
+.cta-btn:hover {
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* Imported Cars Section */
+.imported-cars {
+    padding: 40px;
+    border-radius: 10px;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.imported-cars h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+/* Car Grid */
+.car-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.car-card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.car-card:hover {
+    transform: scale(1.05);
+}
+
+.car-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+/* Import Benefits Section */
+.import-benefits {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+.import-benefits h2 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.benefit-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+}
+
+/* Blurred Background Effect */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.493); /* Dark overlay for readability */
+    transform: scale(1.1); /* Prevents edge issues */
+}
+
+/* Translucent Overlay */
+.card-content {
+    position: relative;
+    padding: 15px;
+    width: 100%;
+    text-align: center;
+    border-radius: 5px;
+
+}
+
+.card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 10px;
+    color: var(--cta-color);
+    text-shadow: rgba(0, 0, 0, 0.596);
+}
+
+.card p {
+    font-size: 1rem;
+    color: var(--bg-color);
+    font-weight: 700;
+    text-shadow: rgba(0, 0, 0, 0.596);
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+/* Customer Reviews Section */
+.customer-reviews {
+    background: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.review-cards {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.review-card {
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover {
+    transform: scale(1.05);
+}
+
+.review-card p {
+    font-size: 1rem;
+    color: #333;
+    font-style: italic;
+}
+
+.review-card h4 {
+    font-size: 1rem;
+    color: var(--color);
+    margin-top: 10px;
+}
+
+.stars {
+    color: #ffcc00;
+    font-size: 1.2rem;
+}
+
+
+/* Promotions Section */
+.promotions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: url('Assets/motorgram\ stock.jpg') no-repeat center center/cover;
+    position: relative;
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Overlay for better readability */
+.promotions::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.349); /* Dark overlay */
+}
+
+/* Promotion Banner */
+.promo-banner {
+    position: relative;
+    text-align: center;
+    color: var(--tg-color);
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.178); /* Glass effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px);
+}
+
+/* Title Styling */
+.promo-banner h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--cta-color);
+}
+
+.promo-banner i {
+    color: var(--primary-color); /* Gold icon */
+    margin-right: 8px;
+    text-shadow: rgba(7, 6, 6, 0.637);
+}
+
+/* Text Styling */
+.promo-banner p {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--bg-color);
+    margin-bottom: 20px;
+    text-shadow: rgba(7, 6, 6, 0.637);
+    font-weight: 700;
+}
+
+/* Button Styling */
+.promo-button {
+    display: inline-flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none;
+    color:var(--bg-color);
+    padding: 12px 24px;
+    border-radius: 50px;
+    background: var(--cta-color);
+    transition: 0.3s ease-in-out;
+    text-shadow: rgba(7, 6, 6, 0.637);
+}
+
+/* Button Hover */
+.promo-button:hover {
+    transform: scale(1.1);
+}
+
+/* Icon Animation */
+.promo-button i {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+.promo-button:hover i {
+    transform: translateX(5px);
+}
+
+/* Signup Section */
+.signup-section {
+    background: white;
+    text-align: center;
+    padding: 60px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 700px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle Decorative Dots */
+.signup-section::before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    left: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 215, 0, 0.3);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.signup-section::after {
+    content: "";
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    background: rgba(70, 130, 180, 0.2);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* Signup Content */
+.signup-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Headings */
+.signup-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--cta-color);
+    margin-bottom: 10px;
+}
+
+.signup-section h2 i {
+    color: var(--primary-color);
+}
+
+/* Description */
+.signup-section p {
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+/* Signup Form */
+.signup-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Email Input */
+.signup-form input {
+    width: 70%;
+    padding: 12px;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+}
+
+.signup-form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+}
+
+/* Subscribe Button */
+.signup-form button {
+    background: var(--cta-color);
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.signup-form button i {
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.signup-form button:hover {
+    background: var(--bg-color);
+    color: var(--primary-color);
+}
+
+/* Privacy Note */
+.privacy-note {
+    font-size: 16px;
+    color: var(--cta-color);
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.privacy-note i {
+    color: var(--primary-color);
+}
+
+
+/* Contact Section */
+
+.contact-section {
+    background: url('Assets/contact\ 2.jpg') no-repeat center center/cover;
+    padding: 20px 20px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Dark Overlay */
+.contact-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.432);
+    z-index: 1;
+}
+
+/* Contact Wrapper */
+.contact-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Contact Info & Actions */
+.contact-info, .contact-actions {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background: rgba(14, 13, 13, 0.521);
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    margin: 10px 10px;
+}
+
+/* Hover Effect */
+.contact-info:hover, .contact-actions:hover {
+    transform: translateY(-5px);
+}
+
+/* Headings */
+.contact-section h2, .contact-section h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--cta-color);
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+}
+
+/* Contact Icons */
+.contact-info i, .contact-actions i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+/* Links */
+.contact-section a {
+    color: var(--cta-color);
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.whatsapp-btn, .email-btn {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 12px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+}
+
+.whatsapp-btn i, .email-btn i {
+    margin-right: 8px;
+}
+
+/* Button Hover Effects */
+.whatsapp-btn:hover {
+    background: #25D366;
+    color: white;
+    border-color: #25D366;
+}
+
+.email-btn:hover {
+    background: #FF5733;
+    color: white;
+    border-color: #FF5733;
+}
+
+/* Footer */
+/* Footer Styling */
+.footer {
+    background:var(--primary-color);
+    padding: 50px 50px;
+    position: relative;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.384);
+}
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Footer Sections */
+.footer-about,
+.footer-links,
+.footer-contact,
+.footer-social {
+    flex: 1;
+    min-width: 220px;
+    margin: 10px;
+}
+.footer-about h2{
+    color: var(--cta-color);
+}
+/* Logo */
+.footer-logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color);
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo i {
+    margin-right: 10px;
+}
+
+/* Footer Links */
+.footer-links h3,
+.footer-contact h3,
+.footer-social h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--cta-color);
+}
+.footer-container p{
+    color:#fff;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: var(--bg-color);
+    font-size: 16px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.footer-links ul li a i {
+    margin-right: 8px;
+    color: var(--color);
+}
+
+.footer-links ul li a:hover {
+    color:var(--cta-color);
+}
+
+/* Contact Info */
+.footer-contact p {
+    font-size: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-contact i {
+    margin-right: 8px;
+    color:var(--color);
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: var(--bg-color);
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--cta-color);
+    transform: scale(1.1);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+}
+.footer-bottom p{
+    font-size: 16px;
+    color: var(--bg-color);
+    font-weight: 600;
+
+}
+.footer-bottom p span{
+    color: var(--cta-color);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    /* Header and Navigation */
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-content {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--primary-color);
+        padding: 10px 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 60vh;
+    }
+
+    .hero-overlay {
+        padding: 20px;
+    }
+
+    .hero h2 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .cta-btn {
+        font-size: 1em;
+        padding: 10px 15px;
+    }
+
+    /* Imported Cars Section */
+    .imported-cars {
+        padding: 20px;
+    }
+
+    .car-list {
+        grid-template-columns: 1fr;
+    }
+
+    /* Import Benefits Section */
+    .benefit-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Customer Reviews Section */
+    .review-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Promotions Section */
+    .promotions {
+        padding: 40px 10px;
+    }
+
+    .promo-banner {
+        padding: 20px;
+    }
+
+    .promo-banner h2 {
+        font-size: 1.5em;
+    }
+
+    .promo-banner p {
+        font-size: 1em;
+    }
+
+    .promo-button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+
+    /* Signup Section */
+    .signup-section {
+        padding: 40px 10px;
+    }
+
+    .signup-form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .signup-form input {
+        width: 100%;
+    }
+
+    .signup-form button {
+        width: 100%;
+    }
+
+    /* Contact Section */
+    .contact-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info, .contact-actions {
+        width: 100%;
+        max-width: 300px;
+        margin: 10px 0;
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-about, .footer-links, .footer-social {
+        margin: 20px 0;
+    }
+
+    .footer-links ul li a {
+        justify-content: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}

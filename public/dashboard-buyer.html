@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard | Motorgram</title>
+    <link rel="stylesheet" href="./dashboard-buyer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Motorgram</h2>
+        <ul>
+            <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Home</li>
+            <li class="active"><i class="fas fa-user-circle"></i> Profile</li>
+            <li><i class="fas fa-car"></i> Saved Cars</li>
+            <li><i class="fas fa-comments"></i> Messages</li>
+            <li><i class="fas fa-calendar-alt"></i> Test Drives</li>
+            <li><i class="fas fa-shopping-cart"></i> Purchase History</li>
+            <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+        </ul>
+        
+        <!-- Dark Mode Toggle Switch -->
+        <div class="dark-mode-toggle">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeSwitch">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <h1>Welcome to Your Dashboard</h1>
+        <p>Manage your saved cars, test drives, and purchases here.</p>
+
+          <!-- Profile Section -->
+          <section class="profile-section">
+            <h2>Your Profile</h2>
+            
+            <!-- Profile Display -->
+            <div class="profile-display">
+                <img src="default-profile.jpg" alt="Profile Picture" class="profile-pic" id="profilePic">
+                <p><strong>Name:</strong> <span id="profileName">John Doe</span></p>
+                <p><strong>Email:</strong> <span id="profileEmail">johndoe@example.com</span></p>
+                <p><strong>Phone:</strong> <span id="profilePhone">+123456789</span></p>
+            </div>
+        
+            <!-- Edit Profile Form (Initially Hidden) -->
+            <form id="profileForm" class="profile-edit" style="display: none;">
+                <input type="text" id="editName" placeholder="Enter Name">
+                <input type="email" id="editEmail" placeholder="Enter Email">
+                <input type="tel" id="editPhone" placeholder="Enter Phone Number">
+                <input type="file" id="editProfilePic" accept="image/*">
+            </form>
+        
+            <!-- Change Password Section -->
+            <div class="password-change" style="display: none;">
+                <h3>Change Password</h3>
+                <input type="password" id="currentPassword" placeholder="Enter Current Password">
+                <input type="password" id="newPassword" placeholder="Enter New Password">
+            </div>
+        
+            <div class="profile-buttons">
+                <button class="edit-btn" id="editProfileBtn">Edit Profile</button>
+                <button class="save-btn" id="saveProfileBtn" style="display: none;">Save</button>
+                <button class="cancel-btn" id="cancelProfileBtn" style="display: none;">Cancel</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>

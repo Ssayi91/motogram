@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorgram - Imported Cars</title>
+    <link rel="stylesheet" href="imports.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1><i class="fa-solid fa-plane" style="color:#fff;"></i> Imported Cars</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-home"></i> Home</a></li>
+                <li><a href="imports.html" class="active" style="color: #db6551;"><i class="fa-solid fa-plane"></i> Imported Cars</a></li>
+                <li><a href="motorgram-stock.html"><i class="fa-solid fa-car"></i> In-House Stock</a></li>
+                <li><a href="blogs.html"><i class="fa-solid fa-newspaper"></i> Blogs</a></li>
+                <li><a href="frauds.html"><i class="fa-solid fa-triangle-exclamation"></i> Report Fraud</a></li>
+                <li><a href="finance-calculator.html"><i class="fa-solid fa-calculator"></i> Finance Calculator</a></li>
+                <li><a href="login.html" class="login-button"><i class="fa-solid fa-user"></i> Login</a></li>
+                <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay">
+            <h2>Quality Imported Cars, Just for You</h2>
+            <p>Browse our latest imports and find your dream car today.</p>
+            <a href="#imported-cars" class="cta-btn">View Imported Cars</a>
+        </div>
+    </section>
+
+    <main>
+        <section class="imported-cars" id="imported-cars">
+            <h2><i class="fa-solid fa-car"></i> Cars in Transit</h2>
+            <div class="car-list" id="import-car-list">
+                <!-- Dynamically populated imported car details will go here -->
+            </div>
+        </section>
+    
+        <!-- Import Car Benefits Section -->
+        <section class="import-benefits">
+            <h2><i class="fa-solid fa-globe"></i> Why Import with Us?</h2>
+            <div class="benefit-cards">
+                <div class="card" style="background-image: url('Assets/ship\ import.jpg');">
+                    <div class="card-content">
+                        <h3>Quality Assurance</h3>
+                        <p>All imported cars go through strict inspection for top-notch quality.</p>
+                    </div>
+                </div>
+                <div class="card" style="background-image: url('Assets/variety.jpg');">
+                    <div class="card-content">
+                        <h3>Variety of Cars</h3>
+                        <p>Get the best deals on a variety of imported vehicles with transparent pricing.</p>
+                    </div>
+                </div>
+                <div class="card" style="background-image: url('Assets/fast\ shipping.avif');">
+                    <div class="card-content">
+                        <h3>Secure Shipping</h3>
+                        <p>Enjoy a smooth and hassle-free import process with quick delivery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    
+        <!-- Customer Reviews Section -->
+        <section class="customer-reviews">
+            <h2><i class="fa-solid fa-star"></i> What Our Customers Say</h2>
+            <div class="review-cards">
+                <div class="review-card">
+                    <p>"I received my dream car in perfect condition. Amazing service!"</p>
+                    <h4>- John M.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+                <div class="review-card">
+                    <p>"Smooth import process and great pricing. Highly recommended!"</p>
+                    <h4>- Sarah K.</h4>
+                    <div class="stars">★★★★☆</div>
+                </div>
+                <div class="review-card">
+                    <p>"Fast shipping and excellent communication. I'll import again!"</p>
+                    <h4>- Mike T.</h4>
+                    <div class="stars">★★★★★</div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="promotions">
+            <div class="promo-banner">
+                <h2><i class="fa-solid fa-tags"></i> Current Promotions</h2>
+                <p>Check out our latest deals and offers!</p>
+                <a href="#" class="promo-button">View Offers <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="signup-section">
+            <div class="signup-content">
+                <h2><i class="fa-solid fa-bell"></i> Get Notified on Exclusive Discounts & Promos!</h2>
+                <p>Sign up now and be the first to know about our special offers, discounts, and latest car deals.</p>
+                
+                <form class="signup-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+        
+                <p class="privacy-note"><i class="fa-solid fa-lock"></i> We respect your privacy. No spam, just great deals!</p>
+            </div>
+        </section>
+        
+
+        <!-- contact section -->
+
+        <section class="contact-section">
+            <div class="contact-wrapper">
+                <!-- Left: Contact Information -->
+                <div class="contact-info">
+                    <h2><i class="fa-solid fa-phone-volume"></i> Get in Touch</h2>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Motorway, Nairobi, Kenya</p>
+                    <p><i class="fa-solid fa-envelope"></i> support@example.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +254 700 123 456</p>
+                </div>
+        
+                <!-- Right: Contact Actions -->
+                <div class="contact-actions">
+                    <h3><i class="fa-solid fa-comments"></i> Need Help?</h3>
+                    <p>Chat with us or check out our <a href="#faqs">FAQs</a> for quick answers.</p>
+                    <div class="action-buttons">
+                        <button class="whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                        </button>
+                        <button class="email-btn">
+                            <i class="fa-solid fa-envelope-open-text"></i> Send an Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Logo & About -->
+            <div class="footer-about">
+                <h2 class="footer-logo"><i class="fa-solid fa-car" style="color:#fff ;"></i> MotoGram</h2>
+                <p>Find, sell, and import cars effortlessly. Drive your dream with MotoGram.</p>
+            </div>
+    
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#"><i class="fa-solid fa-car"></i> Buy a Car</a></li>
+                    <li><a href="#"><i class="fa-solid fa-handshake"></i> Sell Your Car</a></li>
+                    <li><a href="#"><i class="fa-solid fa-globe"></i> Import Cars</a></li>
+                    <li><a href="#"><i class="fa-solid fa-tags"></i> Offers & Discounts</a></li>
+                </ul>
+            </div>
+    
+            <!-- Social Media -->
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2025 MotoGram. <span>All rights reserved</span>.</p>
+        </div>
+    </footer>
+
+    <script src="scripts/imports.js"></script>
+    <script src="public-cars.js"></script>
+</body>
+</html>

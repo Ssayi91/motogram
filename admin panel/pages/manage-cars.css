@@ -1,0 +1,469 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+.car-images::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar */
+}
+
+.car-images::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+    border-radius: 8px; /* Rounded corners for the track */
+}
+
+.car-images::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Scrollbar color */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    transition: background-color 0.5s ease;
+}
+/* Show scrollbar thumb on hover */
+.car-images:hover::-webkit-scrollbar-thumb {
+    background-color: var(--tg-color); /* Scrollbar color when scrolling */
+}
+
+/* For Firefox */
+.car-images {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: transparent transparent; /* Thumb and track color */
+    transition: scrollbar-color 0.3s ease;
+}
+.car-images:hover {
+    scrollbar-color: var(--tg-color) transparent; /* Show thumb color on hover */
+}
+
+/* Optional: Internet Explorer and Edge (before Chromium-based Edge) */
+.car-images {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Auto-hiding scrollbar */
+}
+:root{
+    --main-color:darkred;
+    --text-color:rgb(0, 0, 0);
+    --bg-color: white;
+    --color:#1f5b8f;
+    --fg-color:#315a79;
+    --txt-color:#9fb7ca;
+    --tag-color:#ba4989;
+    --tg-color:#db6551;
+    --tg1-color:#e69a54;
+    --tg2-color:#c23e5d;
+    --tg3-color:#e8094b;
+    --tg4-color:#dd2a7d;
+}
+
+/* 🔹 GLOBAL STYLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    background: #f4f4f4;
+    color: #333;
+}
+
+body.dark-mode .sidebar {
+    background-color: #333;
+}
+
+body.dark-mode .dashboard {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+/* 🔹 ADMIN CONTAINER */
+.admin-container {
+    display: flex;
+    width: 100%;
+}
+
+/* 🔹 MOBILE MENU BUTTON */
+.menu-btn {
+    display: none; /* Hide on desktop */
+    position: absolute;
+    margin: -15px 35px 15px -15px;
+    border-radius: 8px;
+    top: 20px;
+    left: 20px;
+    background: #222;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.menu-btn i {
+    pointer-events: none; /* Prevent clicking the icon itself */
+}
+
+/* 🔹 SIDEBAR */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;  /* Show by default */
+    background: #222;
+    color: white;
+    height: 180%;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    line-height: 2.5em;
+}
+
+.sidebar h2 {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    color: var(--tg-color) ;
+}
+
+
+.sidebar ul li i {
+    margin-right: 10px;
+}
+.sidebar.active {
+    left: 0; /* Show when active */
+}
+
+/* 🔹 MAIN CONTENT */
+.dashboard {
+    flex: 1;
+    padding: 50px 40px 45px 40px;
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* 🔹 HEADER */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    color: var(--bg-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 22px;
+    color: white;
+}
+
+.header-actions button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* 🔹 CAR UPLOAD FORM */
+.car-upload {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.car-upload h2 {
+    font-size: 18px;
+    color: #1a253a;
+    margin-bottom: 10px;
+}
+
+#car-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.input-group i {
+    color: #666;
+    margin-right: 10px;
+}
+
+.input-group input, 
+.input-group select {
+    border: none;
+    outline: none;
+    background: none;
+    flex: 1;
+    font-size: 14px;
+}
+
+#car-form button {
+    background: var(--tg-color);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    max-width: 200px;
+}
+
+/* 🔹 SEARCH & FILTER */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#apply-filters {
+    background: var(--text-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* 🔹 CAR LIST GRID */
+#car-list {
+    display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 2fr));
+        grid-gap: 5px;
+        padding: 10px;
+        transition: all 0.3s ease;   
+}
+
+/* Styles for the car cards */
+.car-item {
+    display: flex;
+    flex-direction: column; /* Changed to column for better image display */
+    align-items: center; /* Center align items */
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px; /* Increased padding for better spacing */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow for depth */
+    transition: transform 0.3s;
+    margin: 15px; /* Added margin for spacing between cards */
+    width: calc(33% - 30px); /* Set width for three cards per row with adjusted margin */
+}
+
+.toggle-description {
+    background: var(--tg-color);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Space above button */
+    transition: background-color 0.3s;
+}
+
+.toggle-description:hover {
+    background: darken(var(--tg-color), 10%); /* Darken on hover */
+}
+
+.description-content {
+    margin-top: 10px; /* Space above the description content */
+    display: none; /* Initially hidden */
+}
+
+.image-slider {
+    display: flex;
+    overflow: hidden; /* Hide overflow for carousel effect */
+    position: relative; /* Position for buttons */
+    max-width: 100%; /* Limit the width of the image slider */
+}
+.car-details h3{
+    font-size: 20px;
+    color: var(--color);
+}
+.car-details p{
+    font-size: 14px;
+    color: #000;
+    /* font-weight: 600; */
+    justify-content: space-between;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease; /* Smooth transition for carousel */
+    position: relative; /* Position for absolute buttons */
+}
+
+.carousel img {
+    width: 100%; /* Ensure images fit within the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Rounded corners for images */
+    display: block; /* Show images by default */
+}
+
+/* Carousel button styles */
+.prev, .next {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+/* Button styles */
+.edit-button, .delete-button, .approve-button {
+    background: var(--tg-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px; /* Space above buttons */
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover, .delete-button:hover, .approve-button:hover {
+    background-color: var(--bg-color);
+    color: var(--color);
+    border: 1px solid var(--color);
+    font-weight: 700;
+    transition: 0.8s;
+}
+
+/* Modal Overlay */
+.modal {
+    display: none; /* Hide modal by default */
+    position: fixed;
+    z-index: 1000; /* Ensures it's on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+    display: block;
+    margin: auto;
+    max-width: 80%;
+    border-radius: 5px;
+    margin-top: 40px;
+}
+
+/* Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    color: var(--tg-color);
+    cursor: pointer;
+}
+
+/* Navigation Buttons */
+#prev-arrow, #next-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.308);
+    color: var(--tg-color);
+    border: none;
+    padding: 10px 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#prev-arrow { left: 10px; }
+#next-arrow { right: 10px; }
+
+/* 🔹 MEDIA QUERIES FOR RESPONSIVENESS */
+@media (max-width: 768px) {
+    .admin-container {
+        flex-direction: column; /* Stack sidebar and main content */
+    }
+
+    .sidebar {
+        width: 100%; /* Full width on mobile */
+        height: auto; /* Adjust height */
+        position: relative; /* Change to relative */
+    }
+
+    .dashboard {
+        margin-left: 0; /* Remove left margin */
+        width: 100%; /* Full width */
+        padding: 20px; /* Adjust padding */
+    }
+
+    .input-group {
+        max-width: 100%; /* Full width for input groups */
+    }
+
+    #car-form button {
+        max-width: 100%; /* Full width for buttons */
+    }
+
+    .filter-container {
+        margin-left: 0; /* Remove left margin */
+        width: 100%; /* Full width */
+        padding: 20px; /* Adjust padding */
+    }
+
+    .input-group {
+        max-width: 100%; /* Full width for input groups */
+    }
+
+    #car-form button {
+        max-width: 100%; /* Full width for buttons */
+    }
+
+    .filter-container {
+        flex-direction: column; /* Stack filters */
+    }
+
+    .car-item {
+        width: 100%; /* Full width for cards on mobile */
+    }
+}

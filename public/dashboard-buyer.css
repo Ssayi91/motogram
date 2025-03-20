@@ -1,0 +1,393 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+/* General Styles */
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+.car-images::-webkit-scrollbar {
+    width: 3px; /* Thin scrollbar */
+}
+
+.car-images::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+    border-radius: 8px; /* Rounded corners for the track */
+}
+
+.car-images::-webkit-scrollbar-thumb {
+    background-color: transparent; /* Scrollbar color */
+    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
+    transition: background-color 0.5s ease;
+}
+/* Show scrollbar thumb on hover */
+.car-images:hover::-webkit-scrollbar-thumb {
+    background-color: var(--tg-color); /* Scrollbar color when scrolling */
+}
+
+/* For Firefox */
+.car-images {
+    scrollbar-width: thin; /* Thin scrollbar */
+    scrollbar-color: transparent transparent; /* Thumb and track color */
+    transition: scrollbar-color 0.3s ease;
+}
+.car-images:hover {
+    scrollbar-color: var(--tg-color) transparent; /* Show thumb color on hover */
+}
+
+/* Optional: Internet Explorer and Edge (before Chromium-based Edge) */
+.car-images {
+    -ms-overflow-style: -ms-autohiding-scrollbar; /* Auto-hiding scrollbar */
+}
+
+:root{
+    --main-color:darkred;
+    --text-color:rgb(0, 0, 0);
+    --bg-color: white;
+    --color:#1f5b8f;
+    --fg-color:#315a79;
+    --txt-color:#9fb7ca;
+    --tag-color:#ba4989;
+    --tg-color:#db6551;
+    --tg1-color:#e69a54;
+    --tg2-color:#c23e5d;
+    --tg3-color:#e8094b;
+    --tg4-color:#dd2a7d;
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: Montserrat;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background: #f4f4f4;
+    color: #333;
+    transition: 0.3s;
+}
+
+/* Dark Mode */
+.dark-mode {
+    background: #0a0a0a;
+    color: #fff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;  /* Show by default */
+    background: #222;
+    color: white;
+    height: 180%;
+    padding: 20px;
+    transition: left 0.3s ease-in-out;
+    line-height: 2.5em;
+}
+
+.sidebar h2 {
+    color: var(--bg-color);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: white;
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+
+.sidebar ul li i {
+    font-size: 20px;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    color: var(--tg-color);
+}
+
+/* Dark Mode Sidebar */
+.dark-mode .sidebar {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode .sidebar ul li:hover,
+.dark-mode .sidebar ul li.active {
+    color: var(--tg-color);
+}
+
+/* Dark Mode Toggle Switch */
+.dark-mode-toggle {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+/* Switch Button */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* Toggle ON */
+input:checked + .slider {
+    background-color: var(--color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+/* Dark Mode Button Effects */
+.dark-mode .slider {
+    background-color: var(--tg-color);
+}
+
+/* Main Content */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    flex-direction: column;
+    background: white;
+    border-radius: 8px;
+    max-width: 500px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    color: #222;
+
+}
+
+.profile-section h2 {
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    border: 3px solid #444;
+}
+
+.profile-info {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.profile-edit {
+    display: none;
+    margin-top: 20px;
+}
+
+.profile-edit input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-left: 150px;
+}
+
+.profile-buttons button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 48%;
+}
+
+.edit-btn {
+    background: var(--color);
+    color: white;
+}
+
+.save-btn {
+    background: var(--tg-color);
+    color: white;
+    display: none;
+}
+
+.cancel-btn {
+    background: var(--color);
+    color: white;
+    display: none;
+}
+
+/* Responsive Sidebar */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 10px;
+    }
+    
+    .sidebar h2 {
+        display: none;
+    }
+
+    .sidebar ul li {
+        justify-content: center;
+    }
+
+    .sidebar ul li span {
+        display: none;
+    }
+
+    .content {
+        margin-left: 60px;
+    }
+}
+
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+}
+
+.profile-section {
+    background: white;
+    border-radius: 10px;
+    max-width: 500px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-section h2 {
+    margin-bottom: 15px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #444;
+}
+
+.profile-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.profile-buttons button {
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px;
+}
+
+.edit-btn {
+    background: var(--color);
+    color: white;
+}
+
+.save-btn, .cancel-btn {
+    background: var(--tg-color);
+    color: white;
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 10px;
+    }
+    
+    .sidebar h2, .sidebar ul li span {
+        display: none;
+    }
+    
+    .sidebar ul li {
+        justify-content: center;
+    }
+
+    .content {
+        margin-left: 60px;
+    }
+
+    .profile-section {
+        width: 90%;
+    }
+}

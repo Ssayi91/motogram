@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motorgram - Home</title>
+    <link rel="stylesheet" href="style-v2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="header-content">
+            <h1><i class="fa-solid fa-car" style="color: #fff;"></i> Motorgram</h1>
+            <button class="menu-toggle"><i class="fa-solid fa-bars"></i></button> 
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active" style="color: #db6551;"><i class="fa-solid fa-home"></i> Home</a></li>
+                <li><a href="imports.html"><i class="fa-solid fa-plane"></i> Imported Cars</a></li>
+                <li><a href="motorgram-stock.html"><i class="fa-solid fa-building"></i> In-House Stock</a></li>
+                <li><a href="blogs.html"><i class="fa-solid fa-newspaper"></i> Blogs</a></li>
+                <li><a href="frauds.html"><i class="fa-solid fa-shield"></i> Report Fraud</a></li>
+                <li><a href="finance-calculator.html"><i class="fa-solid fa-calculator"></i> Finance Calculator</a></li>
+                <li><a href="login.html" id="authButton"><i class="fa-solid fa-user"></i> Login</a></li>
+                <li><a href="#" id="logoutButton" style="display: none;"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="hero-banner">
+            <div class="banner-content">
+                <h2><span>Find</span> Your <span>Dream </span>Car <span style="color: #1f5b8f;">Today</span>!</h2>
+                <p><span>Explore</span> our wide <span>selection</span> of vehicles from <span style="color: #db6551;">trusted sellers</span></p>
+                <a href="#featured-cars" class="cta-button">Browse Cars</a>
+            </div>
+        </section>
+        
+        <section class="search-banner">
+            <div class="search-content">
+                <h2><span>Drive</span> Your Dream Car <span>Today</span></h2>
+                <p>Use our advanced search to filter cars based on your preferences.</p>
+        
+                <!-- Search Form -->
+                <form id="search-form">
+                    <div class="input-group">
+                        <input type="text" id="brand" placeholder="Brand">
+                        <input type="text" id="model" placeholder="Model">
+                        <select id="fuelType">
+                            <option value="">Fuel Type</option>
+                            <option value="Petrol">Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric</option>
+                        </select>
+                        <select id="transmission">
+                            <option value="">Transmission</option>
+                            <option value="Automatic">Automatic</option>
+                            <option value="Manual">Manual</option>
+                        </select>
+                    </div>
+        
+                    <div class="input-group">
+                        <input type="number" id="minPrice" placeholder="Min Price (Ksh)">
+                        <input type="number" id="maxPrice" placeholder="Max Price (Ksh)">
+                        <input type="number" id="minMileage" placeholder="Min Mileage (km)">
+                        <input type="number" id="maxMileage" placeholder="Max Mileage (km)">
+                    </div>
+        
+                    <div class="input-group">
+                        <select id="category">
+                            <option value="">Category</option>
+                            <option value="normal">Normal</option>
+                            <option value="imported">Imported</option>
+                        </select>
+                        <input type="number" id="year" placeholder="Year">
+                        <button type="submit" class="search-btn">Search</button>
+                        <button type="button" id="clear-search">Clear</button>
+
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+
+        <div class="product-container">
+            <!-- Card 1: Cars under 1M -->
+            <div class="product-card">
+                <h2>Cars Under 1 Million Ksh</h2>
+                <img src="./Assets/golf r 1.webp" alt="Car Under 1M">
+                <button class="browse-btn">Browse Cars</button>
+            </div>
+    
+            <!-- Card 2: Cars under 2.5M -->
+            <div class="product-card">
+                <h2>Cars Under 2.5 Million Ksh</h2>
+                <img src="./Assets/cx5 1.webp" alt="Car Under 2.5M">
+                <button class="browse-btn">Browse Cars</button>
+            </div>
+    
+            <!-- Card 3: Imported Cars -->
+            <div class="product-card">
+                <h2>Shop for Imported Cars</h2>
+                <img src="./Assets/lx 570 1.webp" alt="Imported Car">
+                <button class="browse-btn">Browse Cars</button>
+            </div>
+        </div>
+
+       
+
+        <section id="featured-cars" class="featured-cars">
+            <h2><i class="fa-solid fa-star"></i> Featured Cars</h2>
+            <div class="car-list" id="car-container">
+                <!-- Dynamically populated car details will go here -->
+            </div>
+        </section>
+
+        <div id="image-modal" class="modal">
+            <span id="close-modal">&times;</span>
+            <span id="prev-modal">&#10094;</span>
+            <img class="modal-content" id="modal-image">
+            <span id="next-modal">&#10095;</span>
+        </div>
+        
+        
+
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-card">
+                    <i class="fa-solid fa-car"></i>
+                    <h3>1000+</h3>
+                    <p>Cars Sold</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h3>500+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-star"></i>
+                    <h3>4.8/5</h3>
+                    <p>Customer Rating</p>
+                </div>
+            </div>
+        </section>
+        
+
+        <section class="user-submitted-listings">
+            <h2><i class="fa-solid fa-users"></i> Submitted Listings</h2>
+            
+                <!-- Dynamically populated user-submitted car details will go here -->
+            </div>
+        </section>
+        
+        <section class="promotions">
+            <div class="promo-banner">
+                <h2><i class="fa-solid fa-tags"></i> Current Promotions</h2>
+                <p>Check out our latest deals and offers!</p>
+                <a href="#" class="promo-button">View Offers <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </section>
+
+        <section class="signup-section">
+            <div class="signup-content">
+                <h2><i class="fa-solid fa-bell"></i> Get Notified on Exclusive Discounts & Promos!</h2>
+                <p>Sign up now and be the first to know about our special offers, discounts, and latest car deals.</p>
+                
+                <form class="signup-form">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit">Subscribe <i class="fa-solid fa-paper-plane"></i></button>
+                </form>
+        
+                <p class="privacy-note"><i class="fa-solid fa-lock"></i> We respect your privacy. No spam, just great deals!</p>
+            </div>
+        </section>
+        
+
+        <!-- contact section -->
+
+        <section class="contact-section">
+            <div class="contact-wrapper">
+                <!-- Left: Contact Information -->
+                <div class="contact-info">
+                    <h2><i class="fa-solid fa-phone-volume"></i> Get in Touch</h2>
+                    <p><i class="fa-solid fa-location-dot"></i> 123 Motorway, Nairobi, Kenya</p>
+                    <p><i class="fa-solid fa-envelope"></i> support@example.com</p>
+                    <p><i class="fa-solid fa-phone"></i> +254 700 123 456</p>
+                </div>
+        
+                <!-- Right: Contact Actions -->
+                <div class="contact-actions">
+                    <h3><i class="fa-solid fa-comments"></i> Need Help?</h3>
+                    <p>Chat with us or check out our <a href="#faqs">FAQs</a> for quick answers.</p>
+                    <div class="action-buttons">
+                        <button class="whatsapp-btn">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp Us
+                        </button>
+                        <button class="email-btn">
+                            <i class="fa-solid fa-envelope-open-text"></i> Send an Email
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+        <footer class="footer">
+            <div class="footer-container">
+                <!-- Logo & About -->
+                <div class="footer-about">
+                    <h2 class="footer-logo"><i class="fa-solid fa-car" style="color: #fff;"></i> MotoGram</h2>
+                    <p>Find, sell, and import cars effortlessly. Drive your dream with MotoGram.</p>
+                </div>
+        
+                <!-- Quick Links -->
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#"><i class="fa-solid fa-car" style="color: #fff;"></i> Buy a Car</a></li>
+                        <li><a href="#"><i class="fa-solid fa-handshake" style="color: #fff;"></i> Sell Your Car</a></li>
+                        <li><a href="#"><i class="fa-solid fa-globe" style="color: #fff;"></i> Import Cars</a></li>
+                        <li><a href="#"><i class="fa-solid fa-tags" style="color: #fff;"></i> Offers & Discounts</a></li>
+                    </ul>
+                </div>
+        
+                <!-- Social Media -->
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook" style="color: #fff;"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram" style="color: #fff;"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter" style="color: #fff;"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube" style="color: #fff;"></i></a>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2025 MotoGram. <span>All rights reserved</span>.</p>
+            </div>
+        </footer>
+        
+    <script src="script.js"></script>
+    <script src="public-cars.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>

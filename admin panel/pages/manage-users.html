@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Users</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="manage-user.css">
+</head>
+<body>
+    <!-- ✅ Sidebar -->
+    <div class="sidebar">
+        <h2 class="logo">Admin Panel</h2>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="manage-users.html" class="active"><i class="fas fa-users"></i> Manage Users</a></li>
+            <li><a href="manage-cars.html"><i class="fas fa-car"></i> Manage Cars</a></li>
+            <li><a href="manage-blogs.html"><i class="fas fa-newspaper"></i> Manage Blogs</a></li>
+            <li><a href="manage-fraud.html"><i class="fas fa-exclamation-triangle"></i> Manage Fraud</a></li>
+            <li><a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+
+        <!-- ✅ Dark/Light Mode Toggle -->
+        <div class="theme-toggle">
+            <i class="fas fa-sun"></i>
+            <input type="checkbox" id="theme-switch">
+            <i class="fas fa-moon"></i>
+        </div>
+    </div>
+
+    <!-- ✅ Main Content -->
+    <div class="main-content">
+        <h1>Manage Users</h1>
+
+        <!-- 🏷️ User Actions -->
+        <div class="actions">
+            <input type="text" id="search-user" placeholder="Search users...">
+            <select id="filter-role">
+                <option value="">All Roles</option>
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+                <option value="admin">Admin</option>
+            </select>
+            <button class="add-user"><i class="fas fa-user-plus"></i> Add User</button>
+            <button class="refresh" onclick="location.reload()"><i class="fas fa-sync"></i> Refresh</button>
+        </div>
+       
+
+        <!-- 🏷️ User Table -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-list">
+                    <!-- Users will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ✅ Pagination -->
+        <div class="pagination">
+            <button id="prev-page" disabled>« Previous</button>
+            <span id="page-number">Page 1</span>
+            <button id="next-page">Next »</button>
+        </div>
+        <div id="pagination" class="pagination-controls"></div>
+    </div>
+
+    <!-- ✅ Script -->
+    <script src="../pages/scripts/manage-user.js"></script>
+</body>
+</html>

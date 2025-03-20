@@ -1,0 +1,269 @@
+/* ✅ Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s, color 0.3s;
+}
+
+
+
+:root{
+    --bg-color: #f4f4f4;
+    --text-color: #222;
+    --sidebar-bg: #fff;
+    --sidebar-text: #333;
+    --hover-color: #ddd;
+    --accent-color: #007bff;
+    --color:#1f5b8f;
+    --fg-color:#315a79;
+    --txt-color:#9fb7ca;
+    --tag-color:#ba4989;
+    --tg-color:#db6551;
+    --tg1-color:#e69a54;
+    --tg2-color:#c23e5d;
+    --tg3-color:#e8094b;
+    --tg4-color:#dd2a7d;
+    --primary-bg: #ffffff;
+    --primary-text: #222;
+    --hover-color: #007bff;
+}
+
+.dark-mode {
+    --bg-color: #181818;
+    --text-color: #eee;
+    --sidebar-bg: #222;
+    --sidebar-text: #ddd;
+    --hover-color: #444;
+    --accent-color: #00aaff;
+    --primary-bg: #222;
+    --primary-text: #ffffff;
+}
+
+/* ✅ Sidebar */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: #222;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sidebar h2.logo {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin-top: -200px;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-bg);
+    padding: 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    color: var(--tg-color) ;
+}
+
+.sidebar h2{
+    color: var(--bg-color);
+}
+
+/* ✅ Theme Toggle */
+.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.theme-toggle i {
+    font-size: 20px;
+}
+
+.theme-toggle input {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background: var(--hover-color);
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.theme-toggle input::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 1px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+.theme-toggle input:checked::before {
+    left: 20px;
+}
+
+/* ✅ Main Content */
+.main-content {
+    margin-left: 260px;
+    padding: 20px;
+    width: 100%;
+}
+
+/* ✅ Action Buttons */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.actions button {
+    background: var(--color);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+}
+
+/* ✅ Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid var(--primary-text);
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: var(--color);
+}
+
+/* ✅ Style for Search & Filter */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.actions input, .actions select {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.actions button {
+    padding: 8px 15px;
+    background-color: var(--color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: var(--tg-color);
+}
+
+/* ✅ Table container for responsiveness */
+.table-container {
+    overflow-x: auto;
+}
+
+/* ✅ Pagination Style */
+
+.pagination{
+    margin-top: 20px;
+    padding: 10px;
+}
+.pagination-controls {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.pagination-btn {
+    background-color: #ddd;
+    border: none;
+    padding: 8px 12px;
+    margin: 3px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination-btn.active {
+    background-color: var(--tg-color);
+    color: white;
+}
+
+
+/* ✅ Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 210px;
+    }
+
+    th, td {
+        font-size: 14px;
+    }
+    .actions {
+        flex-wrap: wrap;
+    }
+    
+    .actions input, .actions select {
+        width: 100%;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+}

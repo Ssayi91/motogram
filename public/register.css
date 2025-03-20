@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+
+/* General Styling */
+:root {
+    --bg-color: #ffff;
+    --color: #1f5b8f;
+    --fg-color: #315a79;
+    --txt-color: #9fb7ca;
+    --tag-color: #ba4989;
+    --tg-color: #db6551;
+    --tg1-color: #e69a54;
+    --tg2-color: #c23e5d;
+    --tg3-color: #e8094b;
+    --tg4-color: #dd2a7d;
+}
+
+body {
+    font-family: 'Montserrat';
+    background-color: rgba(0, 0, 0, 0.582);
+    background-image: url(./Assets/fam\ car.webp);
+    background-blend-mode: overlay;
+    display: flex;
+    object-fit: fill;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Auth Container */
+.auth-container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.auth-container h2{
+    color: var(--color);
+}
+
+/* Form Styling */
+.auth-container input, .auth-container select {
+    width: 80%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Button */
+.auth-container button {
+    width: 100%;
+    padding: 10px;
+    background: var(--tg-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.auth-container button:hover {
+    background: var(--bg-color);
+    color: var(--color);
+    transition: 0.6s ease-in-out;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Links */
+.auth-container p {
+    margin-top: 10px;
+}
+
+.auth-container a {
+    color: var(--color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-container a:hover {
+    text-decoration: underline;
+}

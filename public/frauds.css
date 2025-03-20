@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Color Variables */
+:root {
+    --bg-color: #ffff;
+    --color: #1f5b8f;
+    --fg-color: #315a79;
+    --txt-color: #9fb7ca;
+    --tag-color: #ba4989;
+    --tg-color: #db6551;
+    --tg1-color: #e69a54;
+    --tg2-color: #c23e5d;
+    --tg3-color: #e8094b;
+    --tg4-color: #dd2a7d;
+}
+
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--color);
+}
+
+/* Header Styles */
+header {
+    background: var(--color);
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.6em;
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: end;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+nav ul li a:hover {
+    color: var(--tg-color);
+}
+
+/* Fraud Reporting Section Styles */
+.fraud-section {
+    padding: 20px;
+    background-color: var(--fg-color);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.fraud-report-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fraud-report-form input,
+.fraud-report-form textarea {
+    padding: 10px;
+    border: 1px solid var(--fg-color);
+    border-radius: 5px;
+}
+
+/* Footer Styles */
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}

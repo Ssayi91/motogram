@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="admin-login-styles.css"> <!-- Link to the new CSS file -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Link to Font Awesome -->
+
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <div class="theme-toggle">
+            <button id="toggle-theme">
+                <i class="fas fa-sun"></i> <!-- Font icon for light theme -->
+                <i class="fas fa-moon" style="display:none;"></i> <!-- Font icon for dark theme -->
+            </button>
+        </div>
+
+        <form id="admin-login-form">
+            <div>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script src="./scripts/admin-login.js"></script>
+
+</body>
+</html>
