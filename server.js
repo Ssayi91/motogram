@@ -13,6 +13,7 @@ const carRoutes = require("./routes/carRoutes");
 const fraudRoutes = require("./routes/FraudRoutes");
 const BlogRoutes = require("./routes/BlogRoutes");
 const buyerRoutes = require("./routes/buyerRoutes");
+const messagesRoutes = require("./routes/messagesRoutes");
 // const sellerRoutes = require("./routes/sellerRoutes");
 
 // Connect to MongoDB
@@ -39,6 +40,7 @@ app.use("/api/cars", carRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/fraud", fraudRoutes);
 app.use("/api/buyer", buyerRoutes);
+app.use("/api/messages", messagesRoutes);
 
 // serving static files
 app.use("/uploads", express.static("uploads"));

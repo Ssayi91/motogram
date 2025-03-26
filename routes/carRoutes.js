@@ -98,55 +98,93 @@ router.get("/car/:id", async (req, res) => {
     }
 });
 
-/**
- * ✅ Add Car with Real-Time Updates
- */
 router.post("/add", verifyToken, isAdmin, upload.array("images", 10), async (req, res) => {
     try {
         console.log("Received Body:", req.body);
         console.log("Received Files:", req.files);
 
-        if (!req.body.brand || !req.body.model || !req.body.year || !req.body.price) {
-            return res.status(400).json({ error: "Missing required fields" });
+        // Required fields check
+        const requiredFields = ['brand', 'model', 'year', 'price', 'category'];
+        const missingFields = requiredFields.filter(field => !req.body[field]);
+        
+        if (missingFields.length > 0) {
+            return res.status(400).json({ 
+                error: `Missing required fields: ${missingFields.join(', ')}`
+            });
         }
 
-        if (!req.files || req.files.length === 0) {
+        if (!req.files?.length) {
             return res.status(400).json({ error: "No files uploaded" });
         }
 
         const newCar = new Car({
+            // Core vehicle info
             brand: req.body.brand,
             model: req.body.model,
             year: req.body.year,
             price: req.body.price,
+            
+            // Mechanical details
             engineCapacity: req.body.engineCapacity,
             mileage: req.body.mileage,
-            description: req.body.description,
             fuelType: req.body.fuelType,
             transmission: req.body.transmission,
+            
+            // Visuals & documentation
             images: req.files.map(file => `/uploads/${file.filename}`),
-            addedBy: req.body.addedBy || null,
-            status: req.user.role === "admin" ? "approved" : "pending",
+            description: req.body.description,
+            
+            // Ownership & verification
+            seller: req.user.id, // ✅ Use admin's user ID as seller
+            addedBy: "admin", // ✅ Directly set to admin (from role)
+            status: "approved",
+            verifiedSeller: true,
+            
+            // Categorization
             category: req.body.category,
             source: req.body.source || "public",
-            verifiedSeller: req.user.role === "admin",
-            registration: req.body.registration || null,
+            
+            // Registration handling
+            registration: req.body.registration || undefined, // ✅ Use undefined instead of null
+            
             createdAt: new Date()
         });
 
-        await newCar.save();
+        const savedCar = await newCar.save();
+        
+        // Real-time update
+        eventEmitter.emit("car-added", { 
+            action: "added", 
+            car: savedCar 
+        });
 
-        // Emit real-time event
-        eventEmitter.emit("car-added", { action: "added", car: newCar });
+        res.status(201).json({ 
+            message: "Car added successfully", 
+            car: savedCar 
+        });
 
-        res.status(201).json({ message: "Car added successfully", car: newCar });
     } catch (error) {
         console.error("Error adding car:", error);
-        if (error.code === 11000) {
-            return res.status(400).json({ error: "Registration number must be unique." });
-        } else {
-            return res.status(500).json({ error: "Server error" });
+        
+        // Enhanced error reporting
+        if (error.name === 'ValidationError') {
+            const errors = Object.values(error.errors).map(err => err.message);
+            return res.status(400).json({ 
+                error: "Validation failed", 
+                details: errors 
+            });
         }
+        
+        if (error.code === 11000) {
+            return res.status(409).json({ 
+                error: "Registration number must be unique" 
+            });
+        }
+        
+        res.status(500).json({ 
+            error: "Server error", 
+            details: error.message 
+        });
     }
 });
 
@@ -258,6 +296,58 @@ router.put("/approve/:id", async (req, res) => {
     }
 });
 
+
+/**
+ * ✅ Save/Unsave Car (Buyer Only)
+ */
+router.post("/:id/save", verifyToken, async (req, res) => {
+    try {
+        const car = await Car.findById(req.params.id);
+        const user = await User.findById(req.user.id);
+
+        if (!car || !user) {
+            return res.status(404).json({ message: "Car or user not found" });
+        }
+
+        // Check if car is already saved
+        const carIndex = user.savedCars.indexOf(car._id);
+        const userIndex = car.interestedBuyers.indexOf(user._id);
+
+        if (carIndex === -1) {
+            // Save car
+            user.savedCars.push(car._id);
+            car.interestedBuyers.push(user._id);
+        } else {
+            // Unsave car
+            user.savedCars.splice(carIndex, 1);
+            car.interestedBuyers.splice(userIndex, 1);
+        }
+
+        await user.save();
+        await car.save();
+
+        res.json({ 
+            saved: carIndex === -1,
+            savedCount: car.interestedBuyers.length 
+        });
+    } catch (error) {
+        console.error("❌ Error saving car:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+/**
+ * ✅ Get Saved Cars for Current User
+ */
+router.get("/saved/mycars", verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).populate("savedCars");
+        res.status(200).json(user.savedCars);
+    } catch (error) {
+        console.error("❌ Error fetching saved cars:", error);
+        res.status(500).json({ message: "Server error" });
+    }
+});
 
 
 /**

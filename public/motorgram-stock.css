@@ -94,7 +94,7 @@ nav {
 .hero-banner {
     position: relative;
     background: url('Assets/variety.jpg') no-repeat center center/cover;
-    height: 500px;
+    height: 650px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,7 +102,7 @@ nav {
     text-align: center;
     padding: 20px;
     z-index: 3;
-    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.637);
+    text-shadow: 0 4px 10px rgba(7, 6, 6, 0.171);
 }
 
 .hero-banner::before {
@@ -133,7 +133,7 @@ nav {
 }
 
 .hero-banner p {
-    font-size: 1.5em;
+    font-size: 1.6em;
     margin: 0;
     margin-bottom: 20px;
 }

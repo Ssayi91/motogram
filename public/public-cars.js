@@ -5,6 +5,18 @@ async function fetchPublicCars() {
     console.log("🚗 Fetching Approved Cars...");
 
     try {
+        const loggedIn = isLoggedIn();
+        if (loggedIn) {
+            console.log("🔄 Syncing saved cars...");
+            const savedRes = await fetch('/api/users/me/saved', {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+                }
+            });
+            savedCars = await savedRes.json();
+            localStorage.setItem('savedCars', JSON.stringify(savedCars));
+        }
+        
         const response = await fetch("/api/cars?status=approved"); // Fetch only approved cars
         cars = await response.json();
         console.log("✅ Approved Cars:", cars);
@@ -32,6 +44,11 @@ async function fetchPublicCars() {
             carElement.innerHTML = `
                 <div class="car-image-container">
                     <img src="${car.images[0]}" alt="${car.brand} ${car.model}" class="car-image" onclick="openImageModal(${index}, 0)">
+                      ${isLoggedIn ? `
+            <button class="save-btn" onclick="toggleSave('${car._id}', this)">
+                <i class="${savedCars.includes(car._id) ? 'fas' : 'far'} fa-heart"></i>
+            </button>
+        ` : ''}
                 </div>
                 <div class="car-details">
                     <h3>${car.brand} ${car.model} (${car.year})</h3>
@@ -46,16 +63,45 @@ async function fetchPublicCars() {
                         <span class="more-text">${car.description.slice(100)}</span>
                     </p>
                     <button class="show-more-btn" onclick="toggleDescription(this)">Show More</button>
+
+                        ${isLoggedIn ? `
+            <div class="car-actions">
+                <button class="message-btn" onclick="openMessageModal('${car._id}', '${car.brand} ${car.model}')">
+                    <i class="fas fa-envelope"></i> Message Seller
+                </button>
+            </div>
+        ` : ''}
                 </div>
             `;
 
             // ✅ Assign the car to the correct container
-            if (car.category === "imported" && importContainer) {
-                importContainer.appendChild(carElement);
-            } else if (car.category === "motorgram-stock" && inhouseContainer) {
-                inhouseContainer.appendChild(carElement);
-            } else if (indexContainer) {
-                indexContainer.appendChild(carElement);
+            const currentPage = document.body.dataset.page || 'index';
+            let targetContainer;
+
+            switch(true) {
+                case currentPage === 'imports' && car.category === 'imported':
+                    targetContainer = document.getElementById('import-car-list');
+                    break;
+                case currentPage === 'motorgram-stock' && car.category === 'motorgram-stock':
+                    targetContainer = document.getElementById('motorgram-car-list');
+                    break;
+                default:
+                    if (car.category === 'imported') {
+                        targetContainer = document.getElementById('import-car-list') || 
+                                       document.getElementById('car-container');
+                    } else if (car.category === 'motorgram-stock') {
+                        targetContainer = document.getElementById('motorgram-car-list') || 
+                                       document.getElementById('car-container');
+                    } else {
+                        targetContainer = document.getElementById('car-container');
+                    }
+            }
+
+            if (targetContainer) {
+                console.log(`📦 Appending ${car.brand} to ${targetContainer.id}`);
+                targetContainer.appendChild(carElement);
+            } else {
+                console.warn('🚨 No container found for:', car._id);
             }
         });
 
@@ -63,6 +109,7 @@ async function fetchPublicCars() {
         console.error("❌ Error fetching public cars:", error);
     }
 }
+
 
 // ✅ Expand / Collapse Description
 function toggleDescription(button) {
@@ -185,6 +232,8 @@ document.getElementById("search-form").addEventListener("submit", function (even
     }
 });
 
+
+
 // Clear Search Button Functionality
 document.getElementById("clear-search").addEventListener("click", function () {
     document.getElementById("search-form").reset(); // Reset form fields
@@ -198,3 +247,123 @@ document.querySelector('.menu-toggle').addEventListener('click', function() {
     const navLinks = document.querySelector('.nav-links');
     navLinks.classList.toggle('active');
 });
+
+// Function to open the modal and display the selected image
+function openImageModal(carIndex, imageIndex) {
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const car = window.carData[carIndex];
+
+    // Set the modal image source
+    modalImage.src = car.images[imageIndex];
+    modal.style.display = 'block';
+
+    // Store the current car and image index globally
+    window.currentCarIndex = carIndex;
+    window.currentImageIndex = imageIndex;
+}
+
+// Function to close the modal
+function closeModal() {
+    const modal = document.getElementById('image-modal');
+    modal.style.display = 'none';
+}
+
+// Function to navigate to the previous image
+function prevImage() {
+    const car = window.carData[window.currentCarIndex];
+    window.currentImageIndex = (window.currentImageIndex - 1 + car.images.length) % car.images.length;
+    document.getElementById('modal-image').src = car.images[window.currentImageIndex];
+}
+
+// Function to navigate to the next image
+function nextImage() {
+    const car = window.carData[window.currentCarIndex];
+    window.currentImageIndex = (window.currentImageIndex + 1) % car.images.length;
+    document.getElementById('modal-image').src = car.images[window.currentImageIndex];
+}
+
+// Event Listeners
+document.getElementById('close-modal').addEventListener('click', closeModal);
+document.getElementById('prev-modal').addEventListener('click', prevImage);
+document.getElementById('next-modal').addEventListener('click', nextImage);
+
+// Close modal when clicking outside the image
+window.addEventListener('click', (event) => {
+    const modal = document.getElementById('image-modal');
+    if (event.target === modal) {
+        closeModal();
+    }
+});
+
+// Check if user is logged in
+function isLoggedIn() {
+    return localStorage.getItem('authToken') !== null;
+}
+
+// Get saved cars from localStorage or API
+let savedCars = JSON.parse(localStorage.getItem('savedCars')) || [];
+
+// Toggle save car
+async function toggleSave(carId, btn) {
+    try {
+        const res = await fetch(`/api/cars/${carId}/save`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        const data = await res.json();
+        
+        if (data.saved) {
+            btn.innerHTML = '<i class="fas fa-heart" style="color:red"></i>';
+            savedCars.push(carId);
+        } else {
+            btn.innerHTML = '<i class="far fa-heart"></i>';
+            savedCars = savedCars.filter(id => id !== carId);
+        }
+        
+        localStorage.setItem('savedCars', JSON.stringify(savedCars));
+    } catch (error) {
+        console.error('Error saving car:', error);
+    }
+}
+
+// Message modal
+function openMessageModal(carId, carTitle) {
+    const modal = document.createElement('div');
+    modal.className = 'message-modal';
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-modal" onclick="this.parentElement.parentElement.remove()">&times;</span>
+            <h3>Message Seller About ${carTitle}</h3>
+            <textarea id="message-text" placeholder="Type your message..."></textarea>
+            <button onclick="sendMessage('${carId}')">Send Message</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Send message
+async function sendMessage(carId) {
+    const text = document.getElementById('message-text').value;
+    try {
+        await fetch('/api/messages', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                carId,
+                content: text
+            })
+        });
+        alert('Message sent!');
+        document.querySelector('.message-modal').remove();
+    } catch (error) {
+        console.error('Error sending message:', error);
+    }
+}

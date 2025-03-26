@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages | Motorgram</title>
+    <link rel="stylesheet" href="messages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Motorgram</h2>
+        <ul>
+            <li onclick="window.location.href='index.html'"><i class="fas fa-home"></i> Home</li>
+            <li onclick="window.location.href='dashboard-buyer.html'"><i class="fas fa-user-circle"></i> Profile</li>
+            <li onclick="window.location.href='saved-cars.html'"><i class="fas fa-car"></i> Saved Cars</li>
+            <li class="active"><i class="fas fa-comments"></i> Messages</li>
+            <li onclick="window.location.href='test-drives.html'"><i class="fas fa-calendar-alt"></i> Test Drives</li>
+            <li onclick="window.location.href='purchase-history.html'"><i class="fas fa-shopping-cart"></i> Purchase History</li>
+            <li><i class="fas fa-sign-out-alt"></i> Logout</li>
+        </ul>
+        
+        <!-- Dark Mode Toggle Switch -->
+        <div class="dark-mode-toggle">
+            <span>Dark Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeSwitch">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="messages-header">
+            <h1><i class="fas fa-comments"></i> Messages</h1>
+            <div class="message-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="unread">Unread</button>
+                <button class="filter-btn" data-filter="dealers">Dealers</button>
+            </div>
+        </div>
+
+        <!-- Dynamic Messages Container -->
+        <div class="messages-container" id="messagesContainer">
+            <!-- Messages will be loaded here dynamically -->
+            <div class="empty-state">
+                <i class="fas fa-comment-slash"></i>
+                <p>No messages yet</p>
+            </div>
+        </div>
+
+        <!-- Compose Message Floating Button -->
+        <button class="compose-btn" id="composeBtn">
+            <i class="fas fa-plus"></i>
+        </button>
+    </main>
+
+    <!-- Compose Message Modal -->
+    <div class="modal" id="composeModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>New Message</h2>
+            <form id="messageForm">
+                <div class="form-group">
+                    <label for="recipient">To:</label>
+                    <select id="recipient" required>
+                        <option value="">Select recipient</option>
+                        <!-- Dynamically populated -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="messageText">Message:</label>
+                    <textarea id="messageText" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="send-btn">Send <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <script src="messages.js"></script>
+</body>
+</html>

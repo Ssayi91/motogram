@@ -1,0 +1,407 @@
+/* messages.css - Optimized for Motorgram Messages */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ===== Core Variables ===== */
+:root {
+  /* Color Scheme */
+  --primary-blue: #1f5b8f;
+  --accent-orange: #db6551;
+  --text-dark: #2d3748;
+  --text-light: #f8f9fa;
+  --bg-light: #ffffff;
+  --bg-dark: #121212;
+  --card-bg-light: rgba(255, 255, 255, 0.9);
+  --card-bg-dark: rgba(30, 30, 30, 0.9);
+  --border-light: rgba(0, 0, 0, 0.1);
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --secondary-text-light: #6c757d;
+  --secondary-text-dark: #a0aec0;
+  
+  /* Current Theme Defaults (Light Mode) */
+  --bg-color: var(--bg-light);
+  --text-color: var(--text-dark);
+  --card-bg: var(--card-bg-light);
+  --border-color: var(--border-light);
+  --secondary-text: var(--secondary-text-light);
+}
+
+/* ===== Dark Mode Variables ===== */
+[data-theme="dark"] {
+  --bg-color: var(--bg-dark);
+  --text-color: var(--text-light);
+  --card-bg: var(--card-bg-dark);
+  --border-color: var(--border-dark);
+  --secondary-text: var(--secondary-text-dark);
+}
+
+/* ===== Base Styles ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar Styles ===== */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  background: #222;
+  color: white;
+  padding: 1.5rem;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.sidebar h2 {
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent-orange);
+}
+
+.sidebar i {
+  width: 20px;
+  text-align: center;
+}
+
+/* ===== Dark Mode Toggle ===== */
+.dark-mode-toggle {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-blue);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+/* ===== Main Content Area ===== */
+.content {
+  margin-left: 250px;
+  padding: 2rem;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+}
+
+/* ===== Messages Header ===== */
+.messages-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.messages-header h1 {
+  color: var(--primary-blue);
+  font-size: 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.message-filters {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active {
+  background-color: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+}
+
+/* ===== Messages Container ===== */
+.messages-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+  text-align: center;
+  padding: 3rem 0;
+  color: var(--secondary-text);
+}
+
+.empty-state i {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 1rem;
+}
+
+/* ===== Compose Button ===== */
+.compose-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--accent-orange);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(219, 101, 81, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s ease;
+  z-index: 90;
+}
+
+.compose-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(219, 101, 81, 0.4);
+}
+
+/* ===== Modal Styles ===== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.modal-header {
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  color: var(--primary-blue);
+  font-size: 1.25rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--secondary-text);
+  background: none;
+  border: none;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: inherit;
+}
+
+.form-group textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.send-btn {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.send-btn:hover {
+  background-color: #1a4d7a;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 70px;
+    padding: 1rem;
+  }
+  
+  .sidebar h2,
+  .sidebar li span,
+  .dark-mode-toggle span {
+    display: none;
+  }
+  
+  .content {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+    padding: 1.25rem;
+  }
+  
+  .messages-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .message-filters {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .filter-btn {
+    flex: 1;
+    text-align: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    width: 95%;
+    padding: 1.25rem;
+  }
+  
+  .compose-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1rem;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}

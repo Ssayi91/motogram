@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="imports.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
-<body>
+<body data-page="imports">
     <header class="main-header">
         <div class="header-content">
             <h1><i class="fa-solid fa-plane" style="color:#fff;"></i> Imported Cars</h1>
@@ -26,23 +26,32 @@
         </nav>
     </header>
 
+    <main>
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-overlay">
-            <h2>Quality Imported Cars, Just for You</h2>
-            <p>Browse our latest imports and find your dream car today.</p>
+            <h2>Quality Imported Cars, <span> Just for You</span></h2>
+            <p><span>Browse our latest imports</span> and find your dream car today.</p>
             <a href="#imported-cars" class="cta-btn">View Imported Cars</a>
         </div>
     </section>
 
-    <main>
-        <section class="imported-cars" id="imported-cars">
-            <h2><i class="fa-solid fa-car"></i> Cars in Transit</h2>
-            <div class="car-list" id="import-car-list">
-                <!-- Dynamically populated imported car details will go here -->
-            </div>
-        </section>
     
+    <section class="imported-cars" id="imported-cars">
+        <h2><i class="fa-solid fa-car"></i> Cars in Transit</h2>
+        <div class="car-listings" id="import-car-list">
+                <!-- Dynamically populated imported car details will go here -->
+        </div>
+    </section>
+
+ 
+    <!-- <div id="image-modal" class="modal">
+        <span id="close-modal">&times;</span>
+        <span id="prev-modal">&#10094;</span>
+        <img class="modal-content" id="modal-image">
+        <span id="next-modal">&#10095;</span>
+    </div>
+     -->
         <!-- Import Car Benefits Section -->
         <section class="import-benefits">
             <h2><i class="fa-solid fa-globe"></i> Why Import with Us?</h2>

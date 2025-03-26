@@ -31,7 +31,21 @@ const CarSchema = new mongoose.Schema({
         }
     }, 
     fraudReports: [{ type: mongoose.Schema.Types.ObjectId, ref: "FraudReport" }], // ✅ Tracks fraud reports
-    createdAt: { type: Date, default: Date.now }
+    createdAt: { type: Date, default: Date.now },
+    interestedBuyers: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    seller: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: "User", 
+        required: true 
+    }, // Replace addedBy with seller
+    addedBy: {
+        type: String,
+        enum: ["admin", "seller"],
+        required: true
+    },
 });
 
 module.exports = mongoose.model("Car", CarSchema);
