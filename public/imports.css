@@ -147,82 +147,173 @@ nav ul li a:hover {
 
 /* Imported Cars Section */
 .imported-cars {
-    padding: 40px;
-    border-radius: 10px;
-    margin: 20px 10px;
+    padding: 40px 20px;
+    background: #f9f9f9;
     text-align: center;
 }
 
 .imported-cars h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
     color: var(--primary-color);
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+    width: 100%;
 }
 
-/* Car Grid */
-.car-list {
+.imported-cars h2 i {
+    color: var(--cta-color);
+    margin-right: 15px;
+}
+
+.car-listings {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
-    justify-content: center;
 }
+
 .car-card {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+    border-radius: 15px;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 350px;
-    width: 100%;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    position: relative;
 }
 
 .car-card:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
 }
 
-/* Image Container */
 .car-image-container {
-    width: 100%;
+    position: relative;
     height: 220px;
     overflow: hidden;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 5px;
 }
 
 .car-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    cursor: pointer;
+    object-fit: contain;
+    transition: transform 0.3s ease;
 }
 
-/* Car Details */
+.car-card:hover .car-image {
+    transform: scale(1.05);
+}
+
+.car-image-container::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+}
+
+.save-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.save-btn:hover {
+    background: var(--cta-color);
+    transform: scale(1.1);
+}
+
+.save-btn:hover i {
+    color: white;
+}
+
+.save-btn i {
+    color: var(--cta-color);
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
 .car-details {
-    padding: 15px;
-    text-align: left;
-    width: 100%;
-    border-top: 2px solid var(--primary-color);
+    padding: 20px;
+    position: relative;
 }
 
 .car-details h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--color);
-    margin-bottom: 5px;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+    text-align: left;
 }
 
 .car-details p {
-    font-size: 14px;
-    color: #000;
-    line-height: 1.8em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #444;
+    font-size: 0.95rem;
+    margin: 8px 0;
 }
 
-/* Show More Button */
+.car-details i {
+    color: var(--cta-color);
+    width: 20px;
+    text-align: center;
+}
+
+.description {
+    position: relative;
+    margin: 15px 0;
+    line-height: 1.5;
+    color: #666;
+}
+
+.car-actions {
+    margin-top: 20px;
+}
+
+.message-btn {
+    background: var(--cta-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.message-btn:hover {
+    background: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(219,101,81,0.3);
+}
+
+.message-btn i {
+    color: white;
+    font-size: 1.1rem;
+}
+
 .show-more-btn {
     background: none;
     border: none;
@@ -234,12 +325,10 @@ nav ul li a:hover {
 }
 
 .show-more-btn:hover {
-    background-color: var(--bg-color);
-    color: var(--color);
-    border: 1px solid var(--color);
-    padding: 8px;
-    border-radius: 5px;
+    color: var(--primary-color);
+    text-decoration: underline;
 }
+
 /* Import Benefits Section */
 .import-benefits {
     background-color: #ffffff;
@@ -885,25 +974,17 @@ nav ul li a:hover {
 
     /* Imported Cars Section */
     /* Car List */
-    .car-list {
-        grid-template-columns: 1fr; /* Stack cards vertically */
-        padding: 10px;
+    .car-listings {
+        grid-template-columns: 1fr;
+        max-width: 500px;
     }
-
-    .car-card {
-        max-width: 100%;
+    
+    .imported-cars h2 {
+        font-size: 2rem;
     }
-
+    
     .car-image-container {
-        height: 180px; /* Adjust image height for mobile */
-    }
-
-    .car-details h3 {
-        font-size: 18px;
-    }
-
-    .car-details p {
-        font-size: 13px;
+        height: 200px;
     }
 
     /* Import Benefits Section */
@@ -997,5 +1078,19 @@ nav ul li a:hover {
 
     .social-icons {
         justify-content: center;
+    }
+}
+@media (max-width: 480px) {
+    .car-details {
+        padding: 15px;
+    }
+    
+    .car-details h3 {
+        font-size: 1.2rem;
+    }
+    
+    .message-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
     }
 }

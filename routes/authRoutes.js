@@ -33,21 +33,49 @@ const passwordValidator = (password) => {
     return password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password);
 };
 
+// ✅ Fix: Corrected Admin Verification Route
+router.get("/verify-admin", verifyToken, isAdmin, (req, res) => {
+    res.json({
+        valid: true,
+        user: {
+            id: req.user.id,
+            email: req.user.email,
+            role: req.user.role
+        }
+    });
+});
+
 // ✅ Admin Login
 router.post("/admin-login", async (req, res) => {
-    console.log("Login attempt:", req.body); // Debugging
-
     try {
         const { email, password } = req.body;
-        const admin = await User.findOne({ email, role: { $regex: new RegExp('^' + 'admin', 'i') } });
+        
+        // Case-insensitive search with explicit role check
+        const admin = await User.findOne({ 
+            email: email.toLowerCase(),
+            role: { $regex: /^admin$/i }
+        });
 
         if (!admin || !(await bcrypt.compare(password, admin.password))) {
             return res.status(401).json({ message: "Invalid credentials" });
         }
 
-        const token = jwt.sign({ id: admin._id, role: "admin" }, process.env.JWT_SECRET, { expiresIn: "7d" });
+        // Generate token with explicit admin claims
+        const token = jwt.sign(
+            { 
+                id: admin._id,
+                role: "admin", // Force role to lowercase
+                email: admin.email
+            },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
 
-        res.json({ success: true, token });
+        res.json({
+            success: true,
+            token,
+            role: "admin" // Explicitly send role
+        });
     } catch (error) {
         console.error("Admin login error:", error);
         res.status(500).json({ message: "Server error" });
@@ -151,7 +179,6 @@ router.get("/buyer/profile", verifyToken, async (req, res) => {
         res.status(500).json({ message: "Server error", error: error.message });
     }
 });
-
 
 // ✅ Admin Route (Protected)
 router.get("/admin/dashboard", verifyToken, isAdmin, (req, res) => {

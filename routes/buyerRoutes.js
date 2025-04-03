@@ -47,7 +47,7 @@ router.post("/login", async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
         // Generate JWT Token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1d" });
 
         res.status(200).json({ 
             success: true, 
@@ -105,6 +105,36 @@ router.put("/update-profile", verifyToken, upload.single("profilePic"), async (r
         res.json({ message: "Profile updated successfully!", user: updatedUser });
     } catch (error) {
         console.error(error);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+// ✅ Get buyer's saved cars
+router.get('/saved-cars', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).populate('savedCars');
+        res.json(user.savedCars || []);
+    } catch (error) {
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
+// ✅ Save/unsave a car
+router.post('/save-car/:carId', verifyToken, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        const carId = req.params.carId;
+
+        const index = user.savedCars.indexOf(carId);
+        if (index === -1) {
+            user.savedCars.push(carId); // Save car
+        } else {
+            user.savedCars.splice(index, 1); // Unsave car
+        }
+
+        await user.save();
+        res.json({ success: true, saved: index === -1 });
+    } catch (error) {
         res.status(500).json({ message: "Server error" });
     }
 });

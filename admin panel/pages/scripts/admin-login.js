@@ -25,7 +25,7 @@ document.getElementById("admin-login-form").addEventListener("submit", async fun
 
             // ✅ Store token & role in localStorage
             console.log("✅ Token:", result.token);
-            localStorage.setItem("token", result.token);
+            localStorage.setItem("admintoken", result.token);
 
             // ✅ Store user role if provided (avoid undefined)
             if (result.userRole) {
@@ -42,6 +42,17 @@ document.getElementById("admin-login-form").addEventListener("submit", async fun
         console.error("❌ Error during login:", error);
     }
 });
+
+// Helper functions
+function showError(message) {
+    document.getElementById("message").innerHTML = 
+        `<p class="error-message">${message}</p>`;
+}
+
+function clearAuthData() {
+    localStorage.removeItem("adminToken");
+    localStorage.removeItem("adminRole");
+}
 
 
 

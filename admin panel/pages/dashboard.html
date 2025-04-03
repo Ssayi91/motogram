@@ -10,21 +10,19 @@
 <body>
     <div class="admin-container">
         <!-- Mobile Menu Button -->
-       <!-- Menu Button (Hidden on Desktop, Shown on Mobile) -->
-<button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
+        <button class="menu-btn"><i class="fa-solid fa-bars"></i></button>
 
-<!-- Sidebar -->
-<aside class="sidebar">
-    <button class="toggle-sidebar"><i class="fa-solid fa-xmark"></i></button>
-    <h2><i class="fa-solid fa-user-shield"></i> Admin Panel</h2>
-    <ul>
-        <li><a href="manage-cars.html"><i class="fa-solid fa-car"></i> Manage Cars</a></li>
-        <li><a href="manage-blogs.html"><i class="fa-solid fa-newspaper"></i> Manage Blogs</a></li>
-        <li><a href="manage-fraud.html"><i class="fa-solid fa-triangle-exclamation"></i> Fraud Reports</a></li>
-        <li><a href="manage-users.html"><i class="fa-solid fa-users"></i> Manage Users</a></li>
-    </ul>
-</aside>
-
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <button class="toggle-sidebar"><i class="fa-solid fa-xmark"></i></button>
+            <h2><i class="fa-solid fa-user-shield"></i> Admin Panel</h2>
+            <ul>
+                <li><a href="manage-cars.html"><i class="fa-solid fa-car"></i> Manage Cars</a></li>
+                <li><a href="manage-blogs.html"><i class="fa-solid fa-newspaper"></i> Manage Blogs</a></li>
+                <li><a href="manage-fraud.html"><i class="fa-solid fa-triangle-exclamation"></i> Fraud Reports</a></li>
+                <li><a href="manage-users.html"><i class="fa-solid fa-users"></i> Manage Users</a></li>
+            </ul>
+        </aside>
 
         <!-- Main Content -->
         <main class="dashboard">
@@ -35,11 +33,26 @@
                     <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                 </div>
             </header>
+
             <section class="dashboard-content">
                 <div class="dashboard-box"><i class="fa-solid fa-car"></i> Total Cars: 120</div>
                 <div class="dashboard-box"><i class="fa-solid fa-users"></i> Total Users: 50</div>
                 <div class="dashboard-box"><i class="fa-solid fa-newspaper"></i> Total Blogs: 30</div>
                 <div class="dashboard-box"><i class="fa-solid fa-triangle-exclamation"></i> Fraud Reports: 5</div>
+            </section>
+
+            <section class="messages-section">
+                <h2><i class="fas fa-comments"></i> Buyer Messages</h2>
+                <div class="filter-controls">
+                    <button class="filter-btn active" data-filter="all">All Messages</button> &nbsp;&nbsp;&nbsp;
+                    <button class="filter-btn" data-filter="unread">Unread</button>
+                </div>
+                <div class="admin-messages-container" id="adminMessagesContainer">
+                    <div class="empty-state">
+                        <i class="fas fa-comment-slash"></i>
+                        <p>No messages from buyers yet</p>
+                    </div>
+                </div>
             </section>
         </main>
     </div>

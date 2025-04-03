@@ -165,6 +165,90 @@ body.dark-mode .dashboard-box {
     left: 10px;
 }
 
+/* message section  */
+.messages-section{
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 20px;
+    line-height: 5em;
+}
+/* Admin Messages Styling */
+.admin-messages-container {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .admin-message {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .admin-message.unread {
+    background: #f8f9fa;
+    border-left: 4px solid #007bff;
+  }
+  
+  .message-header {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .message-header img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .unread-badge {
+    background: #007bff;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin-left: 10px;
+  }
+  
+  .mark-read-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  /* filter */
+  .filter-controls{
+    padding: 20px 10px;
+    text-align: left;
+  }
+  .filter-btn{
+    padding: 10px;
+    border-radius: 5px;
+    gap: 10px;
+  }
+  .filter-btn:hover{
+    transform: scale(1.1);
+    transition: 0.5s ease-in;
+  }
+.empty-state p{
+    color: #1f5b8f;
+}
+.empty-state i{
+    color: #1f5b8f;
+}
 @media (max-width: 768px) {
     .sidebar {
         left: -250px;

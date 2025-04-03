@@ -1,19 +1,20 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const MessageSchema = new mongoose.Schema({
+const messageSchema = new Schema({
     sender: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "User", 
+        type: Schema.Types.ObjectId, 
+        ref: 'User', 
         required: true 
     },
     receiver: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "User", 
+        type: Schema.Types.ObjectId, 
+        ref: 'User', 
         required: true 
     },
     car: { 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: "Car", 
+        type: Schema.Types.ObjectId, 
+        ref: 'Car', 
         required: true 
     },
     content: { 
@@ -23,7 +24,11 @@ const MessageSchema = new mongoose.Schema({
     read: { 
         type: Boolean, 
         default: false 
+    },
+    createdAt: { 
+        type: Date, 
+        default: Date.now 
     }
-}, { timestamps: true });
+});
 
-module.exports = mongoose.model("Message", MessageSchema);
+module.exports = mongoose.model('Message', messageSchema);

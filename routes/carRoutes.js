@@ -45,20 +45,20 @@ router.get("/:id", async (req, res) => {
  */
 router.get("/", async (req, res) => {
     try {
-        const { status } = req.query;
+        const { status, category } = req.query;
         let query = {};
 
-        if (status) {
-            query.status = status; // ✅ Filter by status if provided
-        }
+        // Add status filter
+        if (status) query.status = status;
+        
+        // Add category filter
+        if (category) query.category = category;
 
-        console.log("Fetching cars with query:", query); // 🔍 Debugging
-
+        console.log("Fetching cars with query:", query);
         const cars = await Car.find(query);
-        console.log("Found cars:", cars); // 🔍 Debugging
 
         if (cars.length === 0) {
-            return res.status(404).json({ message: "No cars found" }); // ✅ Avoid empty response
+            return res.status(404).json({ message: "No cars found" });
         }
 
         res.status(200).json(cars);
@@ -67,7 +67,6 @@ router.get("/", async (req, res) => {
         res.status(500).json({ message: "Server error" });
     }
 });
-
 
 /**
  * ✅ Fetch Imported Cars Only (For import.html)

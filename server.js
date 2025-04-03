@@ -13,7 +13,8 @@ const carRoutes = require("./routes/carRoutes");
 const fraudRoutes = require("./routes/FraudRoutes");
 const BlogRoutes = require("./routes/BlogRoutes");
 const buyerRoutes = require("./routes/buyerRoutes");
-const messagesRoutes = require("./routes/messagesRoutes");
+const { router: messagesRoutes } = require("./routes/messagesRoutes");
+
 // const sellerRoutes = require("./routes/sellerRoutes");
 
 // Connect to MongoDB

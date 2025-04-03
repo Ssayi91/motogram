@@ -264,15 +264,15 @@ router.put("/reject/:id", verifyToken, isAdmin, async (req, res) => {
 
 // users and admin routes
 // ✅ Fetch all users (Only for admins)
-router.get("/api/admin/users", async (req, res) => {
-    try {
-        const users = await User.find(); // Fetch all users
-        res.json(users);
-    } catch (error) {
-        console.error("Error fetching users:", error);
-        res.status(500).json({ message: "Server error" });
-    }
-});
+// router.get("/users",  verifyToken, isAdmin, async (req, res) => {
+//     try {
+//         const users = await User.find(); // Fetch all users
+//         res.json(users);
+//     } catch (error) {
+//         console.error("Error fetching users:", error);
+//         res.status(500).json({ message: "Server error" });
+//     }
+// });
 
 router.put("/users/:id", verifyToken, isAdmin, async (req, res) => {
     const { name, email, role } = req.body;

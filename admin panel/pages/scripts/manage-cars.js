@@ -1,7 +1,7 @@
 // Check authentication on page load
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem("token");
-    console.log("🔹 Token on Page Load:", token); // Debugging
+    // console.log("🔹 Token on Page Load:", token); // Debugging
 
     if (!token) {
         alert("Please login to access the admin panel");

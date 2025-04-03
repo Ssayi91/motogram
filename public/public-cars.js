@@ -1,25 +1,34 @@
+let savedCars = JSON.parse(localStorage.getItem('savedCars')) || [];
 let cars = []; // Store cars globally to access them in modal functions
 let currentModalIndex = 0; // Track the current image in modal
 
-async function fetchPublicCars() {
-    console.log("🚗 Fetching Approved Cars...");
 
+async function fetchPublicCars() {
     try {
         const loggedIn = isLoggedIn();
-        if (loggedIn) {
-            console.log("🔄 Syncing saved cars...");
-            const savedRes = await fetch('/api/users/me/saved', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-                }
-            });
-            savedCars = await savedRes.json();
-            localStorage.setItem('savedCars', JSON.stringify(savedCars));
-        }
         
-        const response = await fetch("/api/cars?status=approved"); // Fetch only approved cars
+        if (loggedIn) {
+            try {
+                const savedRes = await fetch('/api/buyer/saved-cars', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+                
+                if (savedRes.ok) {
+                    savedCars = await savedRes.json();
+                    localStorage.setItem('savedCars', JSON.stringify(savedCars.map(c => c._id)));
+                }
+            } catch (error) {
+                console.error("⚠️ Saved cars fetch failed, using cached data");
+                savedCars = JSON.parse(localStorage.getItem('savedCars')) || [];
+            }
+        }
+
+        // Rest of your existing car loading code
+        const response = await fetch("/api/cars?status=approved");
         cars = await response.json();
-        console.log("✅ Approved Cars:", cars);
+        window.carData = cars; // Add this for modal compatibility
 
         // Get the containers for different pages
         const indexContainer = document.getElementById("car-container"); // For index.html & motorgram-stock.html
@@ -44,7 +53,7 @@ async function fetchPublicCars() {
             carElement.innerHTML = `
                 <div class="car-image-container">
                     <img src="${car.images[0]}" alt="${car.brand} ${car.model}" class="car-image" onclick="openImageModal(${index}, 0)">
-                      ${isLoggedIn ? `
+                      ${isLoggedIn() ? ` 
             <button class="save-btn" onclick="toggleSave('${car._id}', this)">
                 <i class="${savedCars.includes(car._id) ? 'fas' : 'far'} fa-heart"></i>
             </button>
@@ -64,7 +73,7 @@ async function fetchPublicCars() {
                     </p>
                     <button class="show-more-btn" onclick="toggleDescription(this)">Show More</button>
 
-                        ${isLoggedIn ? `
+                         ${isLoggedIn() ? `
             <div class="car-actions">
                 <button class="message-btn" onclick="openMessageModal('${car._id}', '${car.brand} ${car.model}')">
                     <i class="fas fa-envelope"></i> Message Seller
@@ -75,33 +84,12 @@ async function fetchPublicCars() {
             `;
 
             // ✅ Assign the car to the correct container
-            const currentPage = document.body.dataset.page || 'index';
-            let targetContainer;
-
-            switch(true) {
-                case currentPage === 'imports' && car.category === 'imported':
-                    targetContainer = document.getElementById('import-car-list');
-                    break;
-                case currentPage === 'motorgram-stock' && car.category === 'motorgram-stock':
-                    targetContainer = document.getElementById('motorgram-car-list');
-                    break;
-                default:
-                    if (car.category === 'imported') {
-                        targetContainer = document.getElementById('import-car-list') || 
-                                       document.getElementById('car-container');
-                    } else if (car.category === 'motorgram-stock') {
-                        targetContainer = document.getElementById('motorgram-car-list') || 
-                                       document.getElementById('car-container');
-                    } else {
-                        targetContainer = document.getElementById('car-container');
-                    }
-            }
-
-            if (targetContainer) {
-                console.log(`📦 Appending ${car.brand} to ${targetContainer.id}`);
-                targetContainer.appendChild(carElement);
-            } else {
-                console.warn('🚨 No container found for:', car._id);
+            if (car.category === "imported" && importContainer) {
+                importContainer.appendChild(carElement);
+            } else if (car.category === "motorgram-stock" && inhouseContainer) {
+                inhouseContainer.appendChild(carElement);
+            } else if (indexContainer) {
+                indexContainer.appendChild(carElement);
             }
         });
 
@@ -109,6 +97,7 @@ async function fetchPublicCars() {
         console.error("❌ Error fetching public cars:", error);
     }
 }
+
 
 
 // ✅ Expand / Collapse Description
@@ -298,34 +287,34 @@ window.addEventListener('click', (event) => {
 
 // Check if user is logged in
 function isLoggedIn() {
-    return localStorage.getItem('authToken') !== null;
+    return localStorage.getItem('token') !== null;
 }
-
-// Get saved cars from localStorage or API
-let savedCars = JSON.parse(localStorage.getItem('savedCars')) || [];
 
 // Toggle save car
 async function toggleSave(carId, btn) {
     try {
-        const res = await fetch(`/api/cars/${carId}/save`, {
+        const res = await fetch(`/api/buyer/save-car/${carId}`, {  // Changed endpoint
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             }
         });
         
         const data = await res.json();
         
-        if (data.saved) {
-            btn.innerHTML = '<i class="fas fa-heart" style="color:red"></i>';
-            savedCars.push(carId);
-        } else {
-            btn.innerHTML = '<i class="far fa-heart"></i>';
-            savedCars = savedCars.filter(id => id !== carId);
+        if (data.success) {
+            // Update UI immediately
+            btn.innerHTML = data.saved 
+                ? '<i class="fas fa-heart" style="color:red"></i>' 
+                : '<i class="far fa-heart"></i>';
+            
+            // Update local state
+            savedCars = data.saved 
+                ? [...savedCars, carId] 
+                : savedCars.filter(id => id !== carId);
+            localStorage.setItem('savedCars', JSON.stringify(savedCars));
         }
-        
-        localStorage.setItem('savedCars', JSON.stringify(savedCars));
     } catch (error) {
         console.error('Error saving car:', error);
     }
@@ -353,7 +342,7 @@ async function sendMessage(carId) {
         await fetch('/api/messages', {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('authToken')}`,
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
